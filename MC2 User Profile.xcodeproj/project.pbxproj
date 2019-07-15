@@ -13,6 +13,8 @@
 		60B77B4722D42CFD007E5B69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60B77B4622D42CFD007E5B69 /* Assets.xcassets */; };
 		60B77B4A22D42CFD007E5B69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60B77B4822D42CFD007E5B69 /* LaunchScreen.storyboard */; };
 		60C398F522D8680700B4CB69 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C398F422D8680700B4CB69 /* EditProfileViewController.swift */; };
+		60C398F922D87D5F00B4CB69 /* GenderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C398F822D87D5F00B4CB69 /* GenderTableViewController.swift */; };
+		60C398FB22D8864F00B4CB69 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C398FA22D8864F00B4CB69 /* EditNameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		60B77B4922D42CFD007E5B69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60B77B4B22D42CFD007E5B69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60C398F422D8680700B4CB69 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		60C398F822D87D5F00B4CB69 /* GenderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderTableViewController.swift; sourceTree = "<group>"; };
+		60C398FA22D8864F00B4CB69 /* EditNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 			children = (
 				60B77B4122D42CFB007E5B69 /* ViewController.swift */,
 				60C398F422D8680700B4CB69 /* EditProfileViewController.swift */,
+				60C398FA22D8864F00B4CB69 /* EditNameViewController.swift */,
+				60C398F822D87D5F00B4CB69 /* GenderTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -164,7 +170,9 @@
 			files = (
 				60B77B4222D42CFB007E5B69 /* ViewController.swift in Sources */,
 				60B77B4022D42CFB007E5B69 /* AppDelegate.swift in Sources */,
+				60C398F922D87D5F00B4CB69 /* GenderTableViewController.swift in Sources */,
 				60C398F522D8680700B4CB69 /* EditProfileViewController.swift in Sources */,
+				60C398FB22D8864F00B4CB69 /* EditNameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

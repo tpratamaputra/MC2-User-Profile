@@ -9,8 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var userProfilePhotoView: UIView!
     @IBOutlet weak var userPhotoProfileImageView: UIImageView!
     
     @IBOutlet weak var userNameLabel: UILabel!
@@ -44,15 +42,15 @@ class ViewController: UIViewController {
     
     private func setupView() {
         //loadViewConfigurations goes here.
-        view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
         
-        userProfilePhotoView.layer.cornerRadius = userProfilePhotoView.frame.width / 2
-        userProfilePhotoView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
         
         userPhotoProfileImageView.layer.borderWidth = 1
         userPhotoProfileImageView.layer.masksToBounds = false
         userPhotoProfileImageView.layer.borderColor = UIColor.black.cgColor
-        userPhotoProfileImageView.layer.cornerRadius = userPhotoProfileImageView.frame.height/2
+        userPhotoProfileImageView.layer.cornerRadius = userPhotoProfileImageView.frame.height / 2
         userPhotoProfileImageView.clipsToBounds = true
         
         userBowlingBallWeightView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)

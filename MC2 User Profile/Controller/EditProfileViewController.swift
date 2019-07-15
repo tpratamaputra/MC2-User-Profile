@@ -11,7 +11,7 @@ import UIKit
 class EditProfileViewController: UIViewController {
     
     let menuArray: [String] = ["FULL NAME", "GENDER", "WEIGHT", "HEIGHT"]
-    let detailMenuArray: [String] = ["JENNIE RUBY JANE", "F", "48", "172"]
+    let detailMenuArray: [String] = ["JENNIE RUBY JANE", "♀", "48 KG", "172 CM"]
     
     @IBOutlet weak var editPhotoProfileImageView: UIImageView!
     
@@ -20,7 +20,7 @@ class EditProfileViewController: UIViewController {
     }
     
     private func setupView() {
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         
         view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
         
@@ -31,7 +31,22 @@ class EditProfileViewController: UIViewController {
 
 extension EditProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+//        print(indexPath.row)
+        switch indexPath.row {
+        case 0:
+//            print("This is row 0")
+            performSegue(withIdentifier: "goToEditName", sender: self)
+        case 1:
+//            print("This is row 1")
+            performSegue(withIdentifier: "goToEditGender", sender: self)
+        case 2:
+//            https://www.youtube.com/watch?v=aa-lNWUVY7g
+            print("This is row 2")
+        case 3:
+            print("This is row 3")
+        default:
+            print("Index Out of Range.")
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
