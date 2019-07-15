@@ -13,6 +13,7 @@
         <!--Profile-->
         <scene sceneID="tne-QT-ifu">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MC2_User_Profile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
@@ -193,7 +194,6 @@
                         <segue destination="DFP-3a-HiC" kind="show" identifier="goToEditProfile" id="nXm-hG-zrQ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4457.971014492754" y="-100.44642857142857"/>
         </scene>
@@ -213,7 +213,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XM4-iQ-l90">
-                                <rect key="frame" x="0.0" y="254" width="414" height="407"/>
+                                <rect key="frame" x="0.0" y="254" width="414" height="471"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="A58-Co-kEx" userLabel="footerView">
                                     <rect key="frame" x="0.0" y="72" width="414" height="44"/>
@@ -235,9 +235,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iho-Dk-Uza">
-                                                    <rect key="frame" x="332" y="12" width="44" height="20.5"/>
+                                                    <rect key="frame" x="336.5" y="14" width="39.5" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -253,12 +253,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="QnT-2Z-1fb" firstAttribute="bottom" secondItem="XM4-iQ-l90" secondAttribute="bottom" id="9Hd-FO-KT5"/>
                             <constraint firstItem="XM4-iQ-l90" firstAttribute="centerX" secondItem="QkE-kP-m6v" secondAttribute="centerX" id="GE1-03-Q9u"/>
                             <constraint firstItem="QnT-2Z-1fb" firstAttribute="trailing" secondItem="XM4-iQ-l90" secondAttribute="trailing" id="GXj-fi-nda"/>
                             <constraint firstItem="XM4-iQ-l90" firstAttribute="leading" secondItem="QnT-2Z-1fb" secondAttribute="leading" id="K2B-k8-oaR"/>
                             <constraint firstItem="ZmM-ih-Fgw" firstAttribute="centerX" secondItem="QkE-kP-m6v" secondAttribute="centerX" id="R4T-Bz-HGQ"/>
                             <constraint firstItem="ZmM-ih-Fgw" firstAttribute="top" secondItem="QnT-2Z-1fb" secondAttribute="top" constant="48" id="WRZ-5T-j1g"/>
-                            <constraint firstItem="QnT-2Z-1fb" firstAttribute="bottom" secondItem="XM4-iQ-l90" secondAttribute="bottom" constant="64" id="nxD-th-JdS"/>
                             <constraint firstItem="XM4-iQ-l90" firstAttribute="top" secondItem="ZmM-ih-Fgw" secondAttribute="bottom" constant="52" id="xCO-3J-FCf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QnT-2Z-1fb"/>
@@ -268,18 +268,88 @@
                     </navigationItem>
                     <connections>
                         <outlet property="editPhotoProfileImageView" destination="ZmM-ih-Fgw" id="0eH-YF-Bfi"/>
+                        <outlet property="weightPickerView" destination="IIe-vF-cDp" id="KwO-Ip-0Cv"/>
+                        <outlet property="weightPopOverNavBarTitle" destination="ZTK-bo-S96" id="1De-8c-zWz"/>
+                        <outlet property="weightPopOverView" destination="kSD-K9-TS2" id="IE2-84-Au6"/>
                         <segue destination="HAa-C0-meN" kind="show" identifier="goToEditGender" id="mqn-TF-JVT"/>
                         <segue destination="lRu-g6-Ygt" kind="show" identifier="goToEditName" id="5Oz-Kk-dOy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sfU-Gh-ycB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="kSD-K9-TS2">
+                    <rect key="frame" x="0.0" y="0.0" width="278" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTK-bo-S96">
+                            <rect key="frame" x="0.0" y="0.0" width="278" height="44"/>
+                            <items>
+                                <navigationItem title="Weight" id="d1h-Xc-AWw" userLabel="Weight">
+                                    <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="Ody-kB-hm1">
+                                        <connections>
+                                            <action selector="popUpSaveBtnPressed:" destination="DFP-3a-HiC" id="qv8-Dm-Fln"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IIe-vF-cDp">
+                            <rect key="frame" x="0.0" y="44" width="278" height="162"/>
+                            <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <outlet property="dataSource" destination="DFP-3a-HiC" id="2a6-vD-SCE"/>
+                                <outlet property="delegate" destination="DFP-3a-HiC" id="fkd-8E-fR8"/>
+                            </connections>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ZTK-bo-S96" firstAttribute="top" secondItem="kSD-K9-TS2" secondAttribute="top" id="Jno-6D-DUa"/>
+                        <constraint firstItem="IIe-vF-cDp" firstAttribute="trailing" secondItem="PfR-yT-sgp" secondAttribute="trailing" id="PeV-Q9-JWZ"/>
+                        <constraint firstItem="IIe-vF-cDp" firstAttribute="top" secondItem="ZTK-bo-S96" secondAttribute="bottom" id="bQK-GG-fT9"/>
+                        <constraint firstAttribute="trailing" secondItem="ZTK-bo-S96" secondAttribute="trailing" id="jlz-wU-K2E"/>
+                        <constraint firstItem="ZTK-bo-S96" firstAttribute="leading" secondItem="kSD-K9-TS2" secondAttribute="leading" id="pWC-pd-EgL"/>
+                        <constraint firstItem="IIe-vF-cDp" firstAttribute="leading" secondItem="PfR-yT-sgp" secondAttribute="leading" id="yie-ej-bTv"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="PfR-yT-sgp"/>
+                </view>
+                <view contentMode="scaleToFill" id="d6l-Li-9mx">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc6-md-MG9">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                            <items>
+                                <navigationItem title="Height" id="dRq-l0-YtG">
+                                    <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="db6-hI-2lz"/>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9lx-TM-C29">
+                            <rect key="frame" x="0.0" y="44" width="240" height="156"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="240" id="crA-ae-2tQ"/>
+                                <constraint firstAttribute="height" constant="156" id="egv-Av-dGz"/>
+                            </constraints>
+                        </pickerView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1019607843" green="0.1019607843" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="hc6-md-MG9" secondAttribute="trailing" id="4mV-DH-fv7"/>
+                        <constraint firstItem="hc6-md-MG9" firstAttribute="leading" secondItem="d6l-Li-9mx" secondAttribute="leading" id="789-5f-OHD"/>
+                        <constraint firstItem="hc6-md-MG9" firstAttribute="top" secondItem="d6l-Li-9mx" secondAttribute="top" id="Mbj-OZ-oMA"/>
+                        <constraint firstItem="9lx-TM-C29" firstAttribute="trailing" secondItem="hus-lq-KM7" secondAttribute="trailing" id="RYb-yW-5Lt"/>
+                        <constraint firstAttribute="bottom" secondItem="9lx-TM-C29" secondAttribute="bottom" id="W47-yk-fx4"/>
+                        <constraint firstItem="9lx-TM-C29" firstAttribute="leading" secondItem="hus-lq-KM7" secondAttribute="leading" id="flv-lJ-MrV"/>
+                        <constraint firstItem="9lx-TM-C29" firstAttribute="top" secondItem="hc6-md-MG9" secondAttribute="bottom" id="o0c-BH-Ugx"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="hus-lq-KM7"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="5226" y="-100"/>
         </scene>
         <!--Gender-->
         <scene sceneID="Eu4-0P-toZ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pcZ-mb-xX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="HAa-C0-meN" customClass="GenderTableViewController" customModule="MC2_User_Profile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="b5g-WO-Abe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
@@ -315,11 +385,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Gender" largeTitleDisplayMode="never" id="1zF-70-3z3">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="dd3-Tf-ASF"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="dd3-Tf-ASF"/>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcZ-mb-xX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6261" y="-100"/>
+            <point key="canvasLocation" x="6259" y="-100"/>
         </scene>
         <!--Full Name-->
         <scene sceneID="p8H-An-EDH">
@@ -330,24 +401,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FaH-2O-ay2">
-                                <rect key="frame" x="12" y="12" width="390" height="30"/>
+                                <rect key="frame" x="12" y="32" width="390" height="30"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rle-n9-RKt" firstAttribute="trailing" secondItem="FaH-2O-ay2" secondAttribute="trailing" constant="12" id="6fV-QD-49Q"/>
+                            <constraint firstItem="FaH-2O-ay2" firstAttribute="top" secondItem="rle-n9-RKt" secondAttribute="top" constant="32" id="S2O-wx-1Dy"/>
                             <constraint firstItem="FaH-2O-ay2" firstAttribute="leading" secondItem="rle-n9-RKt" secondAttribute="leading" constant="12" id="UrY-je-Wpj"/>
                             <constraint firstItem="rle-n9-RKt" firstAttribute="trailing" secondItem="FaH-2O-ay2" secondAttribute="trailing" constant="12" id="W49-1X-BnY"/>
                             <constraint firstItem="FaH-2O-ay2" firstAttribute="leading" secondItem="rle-n9-RKt" secondAttribute="leading" constant="12" id="h9c-g0-w6u"/>
-                            <constraint firstItem="FaH-2O-ay2" firstAttribute="top" secondItem="rle-n9-RKt" secondAttribute="top" constant="12" id="qW9-z6-BJz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rle-n9-RKt"/>
                     </view>
                     <navigationItem key="navigationItem" title="Full Name" largeTitleDisplayMode="never" id="wb6-Dt-Qwj">
-                        <barButtonItem key="backBarButtonItem" title=" " id="t31-EX-Vh8"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="done" id="l7J-o5-McA"/>
                     </navigationItem>
                     <connections>
                         <outlet property="editFullNameTextField" destination="FaH-2O-ay2" id="mii-lU-ViW"/>
@@ -355,7 +426,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRI-fp-AA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5984" y="-768"/>
+            <point key="canvasLocation" x="5993" y="-775"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XVT-Fr-E6k">

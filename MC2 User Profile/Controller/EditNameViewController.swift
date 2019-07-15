@@ -15,8 +15,11 @@ class EditNameViewController: UIViewController {
     
     override func viewDidLoad() {
         setupView()
-        
         editFullNameTextField.text = "JENNIE RUBY JANE"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        editFullNameTextField.becomeFirstResponder()
     }
     
     private func setupView() {

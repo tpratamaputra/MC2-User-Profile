@@ -29,7 +29,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var editProfileLabel: UILabel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,7 +40,6 @@ class ViewController: UIViewController {
     }
     
     private func setupView() {
-        //loadViewConfigurations goes here.
         view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
         
         userPhotoProfileImageView.layer.borderWidth = 1
@@ -57,10 +55,10 @@ class ViewController: UIViewController {
         
         userNameLabel.textColor = .white
         userBowlerStatusLabel.textColor = .lightGray
-        userBowlingBallWeightLabel.textColor = .white
-        userGenderLabel.textColor = .white
-        userWeightLabel.textColor = .white
-        userHeightLabel.textColor = .white
+        userBowlingBallWeightLabel.textColor = .lightGray
+        userGenderLabel.textColor = .lightGray
+        userWeightLabel.textColor = .lightGray
+        userHeightLabel.textColor = .lightGray
         
         wViewLabel.textColor = .white
         hViewLabel.textColor = .white
@@ -76,7 +74,6 @@ class ViewController: UIViewController {
     }
     
     @objc private func editProfileTapped() {
-//        print("editProfile isTapped.")
         performSegue(withIdentifier: "goToEditProfile", sender: self)
     }
 }
