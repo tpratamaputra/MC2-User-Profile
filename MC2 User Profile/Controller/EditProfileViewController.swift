@@ -20,8 +20,6 @@ class EditProfileViewController: UIViewController {
     }
     
     private func setupView() {
-        navigationItem.largeTitleDisplayMode = .never
-        
         view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
         
         editPhotoProfileImageView.layer.cornerRadius = editPhotoProfileImageView.frame.width / 2

@@ -172,7 +172,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="NeK-lb-fMO"/>
+                    <navigationItem key="navigationItem" title="Profile" largeTitleDisplayMode="always" id="NeK-lb-fMO">
+                        <barButtonItem key="backBarButtonItem" title=" " id="fpL-8f-WOQ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="editProfileLabel" destination="lxq-EZ-62y" id="amw-s6-oAN"/>
                         <outlet property="hViewLabel" destination="iYW-nA-pr0" id="J6h-wz-3gB"/>
@@ -195,12 +197,12 @@
             </objects>
             <point key="canvasLocation" x="4457.971014492754" y="-100.44642857142857"/>
         </scene>
-        <!--Edit Profile View Controller-->
+        <!--Edit Profile-->
         <scene sceneID="TMj-md-acL">
             <objects>
                 <viewController id="DFP-3a-HiC" customClass="EditProfileViewController" customModule="MC2_User_Profile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QkE-kP-m6v">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZmM-ih-Fgw">
@@ -211,7 +213,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XM4-iQ-l90">
-                                <rect key="frame" x="0.0" y="254" width="414" height="355"/>
+                                <rect key="frame" x="0.0" y="254" width="414" height="407"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="A58-Co-kEx" userLabel="footerView">
                                     <rect key="frame" x="0.0" y="72" width="414" height="44"/>
@@ -261,6 +263,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QnT-2Z-1fb"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Edit Profile" largeTitleDisplayMode="never" id="wgw-2D-4Ql">
+                        <barButtonItem key="backBarButtonItem" title=" " id="4vb-mc-LHa"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="editPhotoProfileImageView" destination="ZmM-ih-Fgw" id="0eH-YF-Bfi"/>
                         <segue destination="HAa-C0-meN" kind="show" identifier="goToEditGender" id="mqn-TF-JVT"/>
@@ -271,12 +276,13 @@
             </objects>
             <point key="canvasLocation" x="5226" y="-100"/>
         </scene>
-        <!--Gender Table View Controller-->
+        <!--Gender-->
         <scene sceneID="Eu4-0P-toZ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcZ-mb-xX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="HAa-C0-meN" customClass="GenderTableViewController" customModule="MC2_User_Profile" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="b5g-WO-Abe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="EKu-x6-fZ6">
@@ -308,17 +314,19 @@
                             <outlet property="delegate" destination="HAa-C0-meN" id="lBa-8K-cvT"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Gender" largeTitleDisplayMode="never" id="1zF-70-3z3">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="dd3-Tf-ASF"/>
+                    </navigationItem>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pcZ-mb-xX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6261" y="-100"/>
         </scene>
-        <!--Edit Name View Controller-->
+        <!--Full Name-->
         <scene sceneID="p8H-An-EDH">
             <objects>
                 <viewController id="lRu-g6-Ygt" customClass="EditNameViewController" customModule="MC2_User_Profile" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hN5-DL-aGr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FaH-2O-ay2">
@@ -338,13 +346,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rle-n9-RKt"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Full Name" largeTitleDisplayMode="never" id="wb6-Dt-Qwj">
+                        <barButtonItem key="backBarButtonItem" title=" " id="t31-EX-Vh8"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="editFullNameTextField" destination="FaH-2O-ay2" id="mii-lU-ViW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRI-fp-AA8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5997" y="-771"/>
+            <point key="canvasLocation" x="5984" y="-768"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="XVT-Fr-E6k">

@@ -42,9 +42,6 @@ class ViewController: UIViewController {
     
     private func setupView() {
         //loadViewConfigurations goes here.
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
-        
         view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
         
         userPhotoProfileImageView.layer.borderWidth = 1
