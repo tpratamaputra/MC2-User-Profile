@@ -39,16 +39,9 @@ class EditProfileViewController: UIViewController {
                                  341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354,
                                  355, 356, 357, 358]
     
-    let someKgAndLbs: [String] = ["Kg", "Lbs"]
+    let someKgAndLbs: [String] = ["Kg.", "Lbs."]
     
     @IBOutlet weak var editPhotoProfileImageView: UIImageView!
-    
-    @IBOutlet var weightPopOverView: UIView!
-    @IBOutlet weak var weightPopOverNavBarTitle: UINavigationBar!
-    
-    @IBOutlet weak var weightPickerView: UIPickerView!
-    
-    @IBOutlet var heightPopOverView: UIView!
     
     override func viewDidLoad() {
         setupView()
@@ -59,14 +52,10 @@ class EditProfileViewController: UIViewController {
         
         editPhotoProfileImageView.layer.cornerRadius = editPhotoProfileImageView.frame.width / 2
         editPhotoProfileImageView.image = #imageLiteral(resourceName: "userPhotoProfile_1")
-        
-        let middleOfPicker = someStaticData.count / 6
-        weightPickerView.selectRow(middleOfPicker, inComponent: 0, animated: true)
     }
-    @IBAction func popUpSaveBtnPressed(_ sender: Any) {
-        self.weightPopOverView.removeFromSuperview()
-        let blurView = self.view.subviews[self.view.subviews.count - 1]
-        blurView.removeFromSuperview()
+    
+    @objc func doneButtonPressed () {
+        view.endEditing(true)
     }
 }
 
@@ -78,29 +67,45 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         case 1:
             performSegue(withIdentifier: "goToEditGender", sender: self)
         case 2:
-            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            let weightPickerView = UIPickerView()
+            weightPickerView.dataSource = self
+            weightPickerView.delegate = self
+            weightPickerView.tag = 1
             
-            self.view.addSubview(blurEffectView)
-            self.view.addSubview(weightPopOverView)
+            let textFieldView = UITextField(frame: CGRect.zero)
+            view.addSubview(textFieldView)
             
-            weightPopOverView.center.y = self.view.center.y / 1.5
-            weightPopOverView.center.x = self.view.center.x
+            
+            let pickerToolBar = UIToolbar()
+            pickerToolBar.barStyle = UIBarStyle.default
+            pickerToolBar.isTranslucent = true
+            pickerToolBar.tintColor = .red
+            pickerToolBar.sizeToFit()
+            
+            let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(doneButtonPressed))
+            
+            pickerToolBar.setItems([doneButton], animated: false)
+            
+            textFieldView.inputView = weightPickerView
+            textFieldView.inputAccessoryView = pickerToolBar
+            
+            textFieldView.becomeFirstResponder()
         case 3:
-            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            let heightPickerView = UIPickerView()
+            heightPickerView.dataSource = self
+            heightPickerView.delegate = self
+            heightPickerView.tag = 2
             
-            self.view.addSubview(blurEffectView)
-            self.view.addSubview(heightPopOverView)
+            let textFieldView = UITextField(frame: CGRect.zero)
+            view.addSubview(textFieldView)
             
-            heightPopOverView.center.y = self.view.center.y / 1.5
-            heightPopOverView.center.x = self.view.center.x
+            textFieldView.inputView = heightPickerView
+            
+           
+            textFieldView.becomeFirstResponder()
         default:
-            print("Index Out of Range.")
+            print("Error: Index Out of Range.")
+            break
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -128,41 +133,59 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
+        if pickerView.tag == 1 {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return someStaticData.count
+        if pickerView.tag == 1 {
+            if component == 0 {
+                return someStaticData.count
+            } else {
+                return someKgAndLbs.count
+            }
         } else {
-            return someKgAndLbs.count
+            return 10
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    
-        if component == 0 {
-            return String(someStaticData[row])
+        if pickerView.tag == 1 {
+            if component == 0 {
+                return String(someStaticData[row])
+            } else {
+                return someKgAndLbs[row]
+            }
         } else {
-            return someKgAndLbs[row]
+            return nil
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let pickerLabel = UILabel()
-        
-        if component == 0 {
-            pickerLabel.text = String(self.someStaticData[row])
-            pickerLabel.textColor = .white
-            pickerLabel.font = UIFont.systemFont(ofSize: 24.0)
-            pickerLabel.textAlignment = .center
+        if pickerView.tag == 1 {
+            let pickerLabel = UILabel()
+            
+            if component == 0 {
+                pickerLabel.text = String(self.someStaticData[row])
+                pickerLabel.textColor = .white
+                pickerLabel.font = UIFont.systemFont(ofSize: 24.0)
+                pickerLabel.textAlignment = .right
+            } else {
+                pickerLabel.text = self.someKgAndLbs[row]
+                pickerLabel.textColor = .white
+                pickerLabel.font = UIFont.systemFont(ofSize: 28.0)
+                pickerLabel.textAlignment = .center
+            }
+            
+            return pickerLabel
         } else {
-            pickerLabel.text = self.someKgAndLbs[row]
-            pickerLabel.textColor = .white
-            pickerLabel.font = UIFont.systemFont(ofSize: 28.0)
-            pickerLabel.textAlignment = .center
+            return UIView()
         }
-        return pickerLabel
+        
     }
 }
