@@ -214,7 +214,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XM4-iQ-l90">
-                                <rect key="frame" x="0.0" y="254" width="414" height="295"/>
+                                <rect key="frame" x="0.0" y="238" width="414" height="311"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="A58-Co-kEx" userLabel="footerView">
                                     <rect key="frame" x="0.0" y="72" width="414" height="0.0"/>
@@ -258,7 +258,7 @@
                             <constraint firstItem="QnT-2Z-1fb" firstAttribute="bottom" secondItem="XM4-iQ-l90" secondAttribute="bottom" constant="176" id="JjP-fw-JJP"/>
                             <constraint firstItem="ZmM-ih-Fgw" firstAttribute="centerX" secondItem="QkE-kP-m6v" secondAttribute="centerX" id="R4T-Bz-HGQ"/>
                             <constraint firstItem="ZmM-ih-Fgw" firstAttribute="top" secondItem="QnT-2Z-1fb" secondAttribute="top" constant="48" id="WRZ-5T-j1g"/>
-                            <constraint firstItem="XM4-iQ-l90" firstAttribute="top" secondItem="ZmM-ih-Fgw" secondAttribute="bottom" constant="52" id="iky-kj-xmk"/>
+                            <constraint firstItem="XM4-iQ-l90" firstAttribute="top" secondItem="ZmM-ih-Fgw" secondAttribute="bottom" constant="36" id="ju5-6r-Ie8"/>
                             <constraint firstItem="XM4-iQ-l90" firstAttribute="trailing" secondItem="QnT-2Z-1fb" secondAttribute="trailing" id="tqb-bn-TVO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QnT-2Z-1fb"/>
@@ -268,6 +268,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="editPhotoProfileImageView" destination="ZmM-ih-Fgw" id="0eH-YF-Bfi"/>
+                        <outlet property="editProfileTableView" destination="XM4-iQ-l90" id="rN9-xm-tg4"/>
                         <segue destination="HAa-C0-meN" kind="show" identifier="goToEditGender" id="mqn-TF-JVT"/>
                         <segue destination="lRu-g6-Ygt" kind="show" identifier="goToEditName" id="5Oz-Kk-dOy"/>
                     </connections>

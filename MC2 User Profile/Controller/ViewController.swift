@@ -42,6 +42,8 @@ class ViewController: UIViewController {
     
     private func setupView() {
         
+        let editProfileTGR = UITapGestureRecognizer(target: self, action: #selector(editProfileTapped))
+        
         view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
         
         userPhotoProfileImageView.layer.borderWidth = 1
@@ -68,8 +70,6 @@ class ViewController: UIViewController {
         
         editProfileLabel.isUserInteractionEnabled = true
         editProfileLabel.textColor = .lightGray
-        
-        let editProfileTGR = UITapGestureRecognizer(target: self, action: #selector(editProfileTapped))
         
         editProfileLabel.addGestureRecognizer(editProfileTGR)
     }

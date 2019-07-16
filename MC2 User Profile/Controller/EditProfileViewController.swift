@@ -12,7 +12,6 @@ class EditProfileViewController: UIViewController {
     
     let menuArray: [String] = ["FULL NAME", "GENDER", "WEIGHT", "HEIGHT"]
     let detailMenuArray: [String] = ["JENNIE RUBY JANE", "♀", "48 KG", "172 CM"]
-    
     let someStaticData: [Int] = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
                                  18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
                                  35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
@@ -38,13 +37,29 @@ class EditProfileViewController: UIViewController {
                                  327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340,
                                  341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354,
                                  355, 356, 357, 358]
-    
     let someKgAndLbs: [String] = ["Kg.", "Lbs."]
     
+    let weightPickerView = UIPickerView()
+    let heightPickerView = UIPickerView()
+    let pickerToolBar = UIToolbar()
+    
     @IBOutlet weak var editPhotoProfileImageView: UIImageView!
+    @IBOutlet weak var editProfileTableView: UITableView!
     
     override func viewDidLoad() {
+        
         setupView()
+        
+        weightPickerView.dataSource = self
+        weightPickerView.delegate = self
+        weightPickerView.tag = 1
+        weightPickerView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
+        weightPickerView.selectRow(someStaticData.count / 8, inComponent: 0, animated: true)
+        
+        heightPickerView.dataSource = self
+        heightPickerView.delegate = self
+        heightPickerView.tag = 2
+        heightPickerView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
     }
     
     private func setupView() {
@@ -52,68 +67,61 @@ class EditProfileViewController: UIViewController {
         
         editPhotoProfileImageView.layer.cornerRadius = editPhotoProfileImageView.frame.width / 2
         editPhotoProfileImageView.image = #imageLiteral(resourceName: "userPhotoProfile_1")
+        
+        editProfileTableView.backgroundColor = .clear
+        editProfileTableView.separatorStyle = .none
     }
     
     @objc func doneButtonPressed () {
         view.endEditing(true)
+        for textField in self.view.subviews where textField is UITextField {
+            textField.resignFirstResponder()
+        }
+        editProfileTableView.deselectRow(at: editProfileTableView.indexPathForSelectedRow! , animated: true)
+    }
+    
+    func triggerPickerView (pickerView: UIPickerView) {
+        pickerToolBar.barStyle = UIBarStyle.blackOpaque
+        pickerToolBar.isTranslucent = true
+        pickerToolBar.tintColor = .white
+        pickerToolBar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        
+        let doneButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(doneButtonPressed))
+        
+        pickerToolBar.setItems([flexibleSpace, doneButton], animated: false)
+        
+        let textFieldView = UITextField(frame: CGRect.zero)
+        view.addSubview(textFieldView)
+        
+        textFieldView.inputView = pickerView
+        textFieldView.inputAccessoryView = pickerToolBar
+        
+        textFieldView.becomeFirstResponder()
     }
 }
 
 extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "goToEditName", sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
         case 1:
             performSegue(withIdentifier: "goToEditGender", sender: self)
+            tableView.deselectRow(at: indexPath, animated: true)
         case 2:
-            let weightPickerView = UIPickerView()
-            weightPickerView.dataSource = self
-            weightPickerView.delegate = self
-            weightPickerView.tag = 1
-            
-            let textFieldView = UITextField(frame: CGRect.zero)
-            view.addSubview(textFieldView)
-            
-            
-            let pickerToolBar = UIToolbar()
-            pickerToolBar.barStyle = UIBarStyle.default
-            pickerToolBar.isTranslucent = true
-            pickerToolBar.tintColor = .red
-            pickerToolBar.sizeToFit()
-            
-            let doneButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(doneButtonPressed))
-            
-            pickerToolBar.setItems([doneButton], animated: false)
-            
-            textFieldView.inputView = weightPickerView
-            textFieldView.inputAccessoryView = pickerToolBar
-            
-            textFieldView.becomeFirstResponder()
+            triggerPickerView(pickerView: weightPickerView)
         case 3:
-            let heightPickerView = UIPickerView()
-            heightPickerView.dataSource = self
-            heightPickerView.delegate = self
-            heightPickerView.tag = 2
-            
-            let textFieldView = UITextField(frame: CGRect.zero)
-            view.addSubview(textFieldView)
-            
-            textFieldView.inputView = heightPickerView
-            
-           
-            textFieldView.becomeFirstResponder()
+            triggerPickerView(pickerView: heightPickerView)
         default:
-            print("Error: Index Out of Range.")
             break
         }
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.backgroundColor = .clear
-        tableView.separatorStyle = .none
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "prototypeCell", for: indexPath)
         cell.backgroundColor = .clear
         cell.separatorInset = .zero
@@ -167,7 +175,9 @@ extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
         if pickerView.tag == 1 {
+            
             let pickerLabel = UILabel()
             
             if component == 0 {
@@ -183,7 +193,9 @@ extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSourc
             }
             
             return pickerLabel
+            
         } else {
+            
             return UIView()
         }
         
