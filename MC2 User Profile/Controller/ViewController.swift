@@ -9,7 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     @IBOutlet weak var userPhotoProfileImageView: UIImageView!
     
     @IBOutlet weak var userNameLabel: UILabel!
@@ -32,19 +31,18 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupLabelView(userClass: loadUserDefaults())
         setupView()
-        
-        userPhotoProfileImageView.image = #imageLiteral(resourceName: "userPhotoProfile_1")
-        userNameLabel.text = "JENNIE RUBY JANE"
-        userBowlerStatusLabel.text = "OCCASIONAL PLAYER"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.view.layoutIfNeeded()
     }
     
     private func setupView() {
-        
         let editProfileTGR = UITapGestureRecognizer(target: self, action: #selector(editProfileTapped))
         
-        view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1058823529, green: 0.1058823529, blue: 0.1960784314, alpha: 1)
         
         userPhotoProfileImageView.layer.borderWidth = 1
         userPhotoProfileImageView.layer.masksToBounds = false
@@ -53,14 +51,15 @@ class ViewController: UIViewController {
         userPhotoProfileImageView.layer.borderColor = UIColor.clear.cgColor
         userPhotoProfileImageView.clipsToBounds = true
         
-        userBowlingBallWeightView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
-        userGenderView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
-        userWeightView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
-        userHeightView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
+        userBowlingBallWeightView.backgroundColor = #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.2509803922, alpha: 1)
+        userGenderView.backgroundColor = #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.2509803922, alpha: 1)
+        userWeightView.backgroundColor = #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.2509803922, alpha: 1)
+        userHeightView.backgroundColor = #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.2509803922, alpha: 1)
         
         userNameLabel.textColor = .white
         userBowlerStatusLabel.textColor = .lightGray
-        userBowlingBallWeightLabel.textColor = .lightGray
+        
+        userBowlingBallWeightLabel.textColor = .white
         userGenderLabel.textColor = .white
         userWeightLabel.textColor = .white
         userHeightLabel.textColor = .white
@@ -72,6 +71,17 @@ class ViewController: UIViewController {
         editProfileLabel.textColor = .lightGray
         
         editProfileLabel.addGestureRecognizer(editProfileTGR)
+    }
+    
+    func setupLabelView(userClass: User) {
+        userPhotoProfileImageView.image = #imageLiteral(resourceName: "userPhotoProfile_1")
+        
+        userNameLabel.text = userClass.userFullName
+        userBowlerStatusLabel.text = userClass.userBowlerStatus
+        userGenderLabel.text = userClass.userGender
+        userBowlingBallWeightLabel.text = "\(Int(round(userClass.ballWeight()))) LB"
+        userWeightLabel.text = "\(userClass.userWeight) KG"
+        userHeightLabel.text = "\(userClass.userHeight) CM"
     }
     
     @objc private func editProfileTapped() {

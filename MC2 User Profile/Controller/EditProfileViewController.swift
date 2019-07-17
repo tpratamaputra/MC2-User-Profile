@@ -9,10 +9,12 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
-    
     let menuArray: [String] = ["FULL NAME", "GENDER", "WEIGHT", "HEIGHT"]
-    let detailMenuArray: [String] = ["JENNIE RUBY JANE", "♀", "48 KG", "172 CM"]
-    let someStaticData: [Int] = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
+    
+    var generateUser: User!
+    var userProfileArray: [String]!
+    
+    let staticDataArray: [Int] = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
                                  18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34,
                                  35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51,
                                  52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68,
@@ -37,10 +39,13 @@ class EditProfileViewController: UIViewController {
                                  327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340,
                                  341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354,
                                  355, 356, 357, 358]
-    let someKgAndLbs: [String] = ["Kg.", "Lbs."]
+    let weightConversionArray: [String] = ["KG"]
+    let heightConversionArray: [String] = ["CM"]
+    let genderConversionArray: [String] = ["MALE", "FEMALE"]
     
     let weightPickerView = UIPickerView()
     let heightPickerView = UIPickerView()
+    let genderPickerView = UIPickerView()
     let pickerToolBar = UIToolbar()
     
     @IBOutlet weak var editPhotoProfileImageView: UIImageView!
@@ -48,22 +53,19 @@ class EditProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        generateUser = loadUserDefaults()
+        
+        userProfileArray = [generateUser.userFullName, generateUser.userGender, "\(generateUser.userWeight) KG", "\(generateUser.userHeight) CM"]
+        
+        generatePickerView(pickerView: weightPickerView, tag: 1)
+        generatePickerView(pickerView: heightPickerView, tag: 2)
+        generatePickerView(pickerView: genderPickerView, tag: 3)
+        
         setupView()
-        
-        weightPickerView.dataSource = self
-        weightPickerView.delegate = self
-        weightPickerView.tag = 1
-        weightPickerView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
-        weightPickerView.selectRow(someStaticData.count / 8, inComponent: 0, animated: true)
-        
-        heightPickerView.dataSource = self
-        heightPickerView.delegate = self
-        heightPickerView.tag = 2
-        heightPickerView.backgroundColor = #colorLiteral(red: 0.1450980392, green: 0.1450980392, blue: 0.2941176471, alpha: 1)
     }
     
     private func setupView() {
-        view.backgroundColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.2117647059, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.1058823529, green: 0.1058823529, blue: 0.1960784314, alpha: 1)
         
         editPhotoProfileImageView.layer.cornerRadius = editPhotoProfileImageView.frame.width / 2
         editPhotoProfileImageView.image = #imageLiteral(resourceName: "userPhotoProfile_1")
@@ -72,18 +74,64 @@ class EditProfileViewController: UIViewController {
         editProfileTableView.separatorStyle = .none
     }
     
-    @objc func doneButtonPressed () {
+    private func generatePickerView(pickerView: UIPickerView, tag: Int) {
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        pickerView.tag = tag
+        pickerView.backgroundColor = #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.2509803922, alpha: 1)
+        
+        if tag == 1 {
+            weightPickerView.selectRow(staticDataArray[checkValueInArray(selectInt: generateUser.userWeight)], inComponent: 0, animated: true)
+        } else if tag == 2 {
+            heightPickerView.selectRow(staticDataArray[checkValueInArray(selectInt: generateUser.userHeight)], inComponent: 0, animated: true)
+        } else {
+            if (generateUser.userGender).caseInsensitiveCompare("Male") == .orderedSame {
+                genderPickerView.selectRow(0, inComponent: 0, animated: true)
+            } else {
+                genderPickerView.selectRow(1, inComponent: 0, animated: true)
+            }
+        }
+    }
+    
+    @objc private func doneButtonPressed () {
+        closePickerView()
+        
+        let selectedIndexPath = editProfileTableView.indexPathForSelectedRow
+        
+        var selectedValue: Any?
+        var detailString: String!
+        
+        switch selectedIndexPath!.row {
+        case 1:
+            selectedValue = genderConversionArray[genderPickerView.selectedRow(inComponent: 0)]
+            UserDefaults.standard.set(selectedValue, forKey: Key.userGender)
+            detailString = "\(String(describing: selectedValue!))"
+        case 2:
+            selectedValue = staticDataArray[weightPickerView.selectedRow(inComponent: 0)]
+            UserDefaults.standard.set(selectedValue, forKey: Key.userWeight)
+            detailString = "\(String(describing: selectedValue!)) KG"
+        case 3:
+            selectedValue = staticDataArray[heightPickerView.selectedRow(inComponent: 0)]
+            UserDefaults.standard.set(selectedValue, forKey: Key.userHeight)
+            detailString = "\(String(describing: selectedValue!)) CM"
+        default:
+            break
+        }
+        editProfileTableView.cellForRow(at: selectedIndexPath!)?.detailTextLabel!.text = detailString
+        editProfileTableView.deselectRow(at: selectedIndexPath! , animated: false)
+    }
+    
+    private func closePickerView() {
         view.endEditing(true)
         for textField in self.view.subviews where textField is UITextField {
             textField.resignFirstResponder()
         }
-        editProfileTableView.deselectRow(at: editProfileTableView.indexPathForSelectedRow! , animated: true)
     }
     
-    func triggerPickerView (pickerView: UIPickerView) {
-        pickerToolBar.barStyle = UIBarStyle.blackOpaque
+    private func triggerPickerView (pickerView: UIPickerView) {
+        pickerToolBar.backgroundColor = #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.2509803922, alpha: 1)
         pickerToolBar.isTranslucent = true
-        pickerToolBar.tintColor = .white
+        pickerToolBar.tintColor = #colorLiteral(red: 0.137254902, green: 0.137254902, blue: 0.2509803922, alpha: 1)
         pickerToolBar.sizeToFit()
         
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -100,18 +148,25 @@ class EditProfileViewController: UIViewController {
         
         textFieldView.becomeFirstResponder()
     }
+    
+    private func checkValueInArray(selectInt: Int) -> Int {
+        if let index = staticDataArray.firstIndex(of: selectInt) {
+           return index - 3
+        } else {
+            return staticDataArray.count / 8
+        }
+    }
 }
 
 extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             performSegue(withIdentifier: "goToEditName", sender: self)
             tableView.deselectRow(at: indexPath, animated: true)
+            closePickerView()
         case 1:
-            performSegue(withIdentifier: "goToEditGender", sender: self)
-            tableView.deselectRow(at: indexPath, animated: true)
+            triggerPickerView(pickerView: genderPickerView)
         case 2:
             triggerPickerView(pickerView: weightPickerView)
         case 3:
@@ -127,7 +182,8 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
         cell.separatorInset = .zero
         cell.textLabel?.textColor = .white
         cell.textLabel?.text = menuArray[indexPath.row]
-        cell.detailTextLabel?.text = detailMenuArray[indexPath.row]
+        cell.detailTextLabel?.text = userProfileArray[indexPath.row]
+        
         return cell
     }
     
@@ -145,6 +201,8 @@ extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView.tag == 1 {
             return 2
+        } else if pickerView.tag == 2 {
+            return 2
         } else {
             return 1
         }
@@ -153,51 +211,74 @@ extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 1 {
             if component == 0 {
-                return someStaticData.count
+                return staticDataArray.count
             } else {
-                return someKgAndLbs.count
+                return weightConversionArray.count
+            }
+        } else if pickerView.tag == 2 {
+            if component == 0 {
+                return 250
+            } else {
+                return heightConversionArray.count
             }
         } else {
-            return 10
+            return genderConversionArray.count
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1 {
             if component == 0 {
-                return String(someStaticData[row])
+                return String(staticDataArray[row])
             } else {
-                return someKgAndLbs[row]
+                return weightConversionArray[row]
+            }
+        } else if pickerView.tag == 2 {
+            if component == 0 {
+                return String(staticDataArray[row])
+            } else {
+                return heightConversionArray[row]
             }
         } else {
-            return nil
+            return genderConversionArray[row]
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         
+        let pickerLabel = UILabel()
+        
         if pickerView.tag == 1 {
-            
-            let pickerLabel = UILabel()
-            
             if component == 0 {
-                pickerLabel.text = String(self.someStaticData[row])
+                pickerLabel.text = String(self.staticDataArray[row])
                 pickerLabel.textColor = .white
                 pickerLabel.font = UIFont.systemFont(ofSize: 24.0)
                 pickerLabel.textAlignment = .right
             } else {
-                pickerLabel.text = self.someKgAndLbs[row]
+                pickerLabel.text = self.weightConversionArray[row]
                 pickerLabel.textColor = .white
-                pickerLabel.font = UIFont.systemFont(ofSize: 28.0)
+                pickerLabel.font = UIFont.systemFont(ofSize: 36.0)
                 pickerLabel.textAlignment = .center
             }
             
-            return pickerLabel
-            
+        } else if pickerView.tag == 2 {
+            if component == 0 {
+                pickerLabel.text = String(self.staticDataArray[row])
+                pickerLabel.textColor = .white
+                pickerLabel.font = UIFont.systemFont(ofSize: 24.0)
+                pickerLabel.textAlignment = .right
+            } else {
+                pickerLabel.text = self.heightConversionArray[row]
+                pickerLabel.textColor = .white
+                pickerLabel.font = UIFont.systemFont(ofSize: 36.0)
+                pickerLabel.textAlignment = .center
+            }
         } else {
-            
-            return UIView()
+            pickerLabel.text = self.genderConversionArray[row]
+            pickerLabel.textColor = .white
+            pickerLabel.font = UIFont.systemFont(ofSize: 24.0)
+            pickerLabel.textAlignment = .center
         }
-        
+        return pickerLabel
     }
 }
