@@ -39,14 +39,18 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FsS-sp-qfo">
                                                 <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="12 KG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j87-U7-hIP">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 KG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j87-U7-hIP">
                                                         <rect key="frame" x="12" y="100.5" width="108" height="19.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" image="ballImage" translatesAutoresizingMaskIntoConstraints="NO" id="rck-j5-tKr">
-                                                        <rect key="frame" x="36" y="22" width="60" height="60.000000000000057"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ballImage" translatesAutoresizingMaskIntoConstraints="NO" id="rck-j5-tKr">
+                                                        <rect key="frame" x="36" y="22" width="60" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="JEb-0h-IZU"/>
+                                                            <constraint firstAttribute="width" constant="60" id="qcE-Po-TZK"/>
+                                                        </constraints>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,14 +105,18 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2z4-mZ-7cq">
                                                         <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="MALE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-zp-HOH">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MALE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-zp-HOH">
                                                                 <rect key="frame" x="12" y="100.5" width="108" height="19.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" image="maleImage" translatesAutoresizingMaskIntoConstraints="NO" id="AIW-dn-cU3">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="maleImage" translatesAutoresizingMaskIntoConstraints="NO" id="AIW-dn-cU3">
                                                                 <rect key="frame" x="36" y="22" width="60" height="60"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="60" id="3oL-sZ-HDr"/>
+                                                                    <constraint firstAttribute="width" constant="60" id="GjG-Fa-rr9"/>
+                                                                </constraints>
                                                             </imageView>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,8 +199,9 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="fpL-8f-WOQ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bowlingBallIV" destination="rck-j5-tKr" id="n28-Nq-cbd"/>
                         <outlet property="editProfileLabel" destination="lxq-EZ-62y" id="amw-s6-oAN"/>
-                        <outlet property="genderImage" destination="AIW-dn-cU3" id="aZt-FE-1Kc"/>
+                        <outlet property="genderIV" destination="AIW-dn-cU3" id="QbC-mh-seF"/>
                         <outlet property="hViewLabel" destination="iYW-nA-pr0" id="J6h-wz-3gB"/>
                         <outlet property="userBowlerStatusLabel" destination="5dS-ki-Bfa" id="DVo-et-1bF"/>
                         <outlet property="userBowlingBallWeightLabel" destination="j87-U7-hIP" id="wDa-Qw-hjf"/>

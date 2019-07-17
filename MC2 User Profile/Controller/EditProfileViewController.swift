@@ -92,7 +92,7 @@ class EditProfileViewController: UIViewController {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
-        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Pick a Photo!", message: "Sources", preferredStyle: .actionSheet)
         
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action: UIAlertAction) in
             if UIImagePickerController.isSourceTypeAvailable(.camera) {

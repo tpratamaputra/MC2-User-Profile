@@ -29,6 +29,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var editProfileLabel: UILabel!
     
+    @IBOutlet weak var bowlingBallIV: UIImageView!
+    @IBOutlet weak var genderIV: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLabelView(userClass: loadUserDefaults())
@@ -82,6 +85,9 @@ class ViewController: UIViewController {
         editProfileLabel.startBlink()
         
         editProfileLabel.addGestureRecognizer(editProfileTGR)
+        
+        bowlingBallIV.layer.borderColor = UIColor.clear.cgColor
+        genderIV.layer.borderColor = UIColor.clear.cgColor
     }
     
     func setupLabelView(userClass: User) {
