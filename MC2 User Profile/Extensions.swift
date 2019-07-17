@@ -19,6 +19,7 @@ extension UIViewController {
             
             generateUser.userBallWeight = generateUser.ballWeight()
             
+            defaults.set((generateUser.userProfileImage).jpegData(compressionQuality: 1.0), forKey: Key.userProfileImage)
             defaults.set(generateUser.userFullName, forKey: Key.userFullName)
             defaults.set(generateUser.userBowlerStatus, forKey: Key.userBowlerStatus)
             defaults.set(generateUser.userGender, forKey: Key.userGender)

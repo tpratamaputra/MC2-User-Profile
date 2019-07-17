@@ -43,6 +43,8 @@ class EditProfileViewController: UIViewController {
     let heightConversionArray: [String] = ["CM"]
     let genderConversionArray: [String] = ["MALE", "FEMALE"]
     
+    
+    
     let weightPickerView = UIPickerView()
     let heightPickerView = UIPickerView()
     let genderPickerView = UIPickerView()
