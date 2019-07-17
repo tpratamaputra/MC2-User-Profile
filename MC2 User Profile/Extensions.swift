@@ -15,7 +15,7 @@ extension UIViewController {
         
         if defaults.string(forKey: Key.userFullName) == nil {
             
-            let generateUser = User(userFullName: "JENNIE RUBY JANE", userBowlerStatus: "OCCASIONAL PLAYER", userGender: "FEMALE", userWeight: 50, userHeight: 163)
+            let generateUser = User(userProfileImage: #imageLiteral(resourceName: "userPhotoProfile_1"), userFullName: "JENNIE RUBY JANE", userBowlerStatus: "OCCASIONAL PLAYER", userGender: "FEMALE", userWeight: 50, userHeight: 163)
             
             generateUser.userBallWeight = generateUser.ballWeight()
             
@@ -28,11 +28,25 @@ extension UIViewController {
             
             return generateUser
         } else {
-            let generateUser = User(userFullName: defaults.string(forKey: Key.userFullName)!, userBowlerStatus: defaults.string(forKey: Key.userBowlerStatus)!, userGender: defaults.string(forKey: Key.userGender)!, userWeight: defaults.integer(forKey: Key.userWeight), userHeight: defaults.integer(forKey: Key.userHeight))
+            let generateUser = User(userProfileImage: UIImage(data: defaults.data(forKey: Key.userProfileImage)!, scale: 1.0)!, userFullName: defaults.string(forKey: Key.userFullName)!, userBowlerStatus: defaults.string(forKey: Key.userBowlerStatus)!, userGender: defaults.string(forKey: Key.userGender)!, userWeight: defaults.integer(forKey: Key.userWeight), userHeight: defaults.integer(forKey: Key.userHeight))
             
             generateUser.userBallWeight = generateUser.ballWeight()
             
             return generateUser
         }
+    }
+}
+
+extension UILabel {
+    func startBlink() {
+        UIView.animate(withDuration: 0.8,
+            delay:0.0,
+            options:[.allowUserInteraction, .curveEaseInOut, .autoreverse, .repeat],
+            animations: { self.alpha = 0.02 },
+            completion: nil)
+    }
+    func stopBlink() {
+        layer.removeAllAnimations()
+        alpha = 1.0
     }
 }

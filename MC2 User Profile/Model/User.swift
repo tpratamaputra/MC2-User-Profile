@@ -7,9 +7,10 @@
 //
 
 
-import Foundation
+import UIKit
 
 class User {
+    var userProfileImage: UIImage
     var userFullName: String
     var userBowlerStatus: String
     var userBallWeight: Double
@@ -17,8 +18,8 @@ class User {
     var userWeight: Int
     var userHeight: Int
     
-    
-    init(userFullName: String, userBowlerStatus: String, userGender: String, userWeight: Int, userHeight: Int) {
+    init(userProfileImage: UIImage, userFullName: String, userBowlerStatus: String, userGender: String, userWeight: Int, userHeight: Int) {
+        self.userProfileImage = userProfileImage
         self.userFullName = userFullName
         self.userBowlerStatus = userBowlerStatus
         self.userBallWeight = 0.0
@@ -40,7 +41,6 @@ class User {
         } else if weightResult > 16.0 {
             weightResult = 16.0 as Double
         }
-        
         return weightResult
     }
 }

@@ -52,10 +52,7 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var editProfileTableView: UITableView!
     
     override func viewDidLoad() {
-        
-        generateUser = loadUserDefaults()
-        
-        userProfileArray = [generateUser.userFullName, generateUser.userGender, "\(generateUser.userWeight) KG", "\(generateUser.userHeight) CM"]
+        loadData()
         
         generatePickerView(pickerView: weightPickerView, tag: 1)
         generatePickerView(pickerView: heightPickerView, tag: 2)
@@ -64,14 +61,58 @@ class EditProfileViewController: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        loadData()
+        editProfileTableView.reloadData()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        view.layoutIfNeeded()
+    }
+    
     private func setupView() {
+        
+        let profileImageTGR = UITapGestureRecognizer(target: self, action: #selector(profileImageTapped))
+        
         view.backgroundColor = #colorLiteral(red: 0.1058823529, green: 0.1058823529, blue: 0.1960784314, alpha: 1)
         
+        editPhotoProfileImageView.isUserInteractionEnabled = true
         editPhotoProfileImageView.layer.cornerRadius = editPhotoProfileImageView.frame.width / 2
-        editPhotoProfileImageView.image = #imageLiteral(resourceName: "userPhotoProfile_1")
+        editPhotoProfileImageView.image = generateUser.userProfileImage
         
         editProfileTableView.backgroundColor = .clear
         editProfileTableView.separatorStyle = .none
+        
+        editPhotoProfileImageView.addGestureRecognizer(profileImageTGR)
+    }
+    
+    @objc private func profileImageTapped() {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action: UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photos", style: .default, handler: { (action: UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel ", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil )
+    }
+    
+    private func loadData () {
+        generateUser = loadUserDefaults()
+        
+        userProfileArray = [generateUser.userFullName, generateUser.userGender, "\(generateUser.userWeight) KG", "\(generateUser.userHeight) CM"]
     }
     
     private func generatePickerView(pickerView: UIPickerView, tag: Int) {
@@ -118,7 +159,7 @@ class EditProfileViewController: UIViewController {
             break
         }
         editProfileTableView.cellForRow(at: selectedIndexPath!)?.detailTextLabel!.text = detailString
-        editProfileTableView.deselectRow(at: selectedIndexPath! , animated: false)
+        editProfileTableView.deselectRow(at: selectedIndexPath! , animated: true)
     }
     
     private func closePickerView() {
@@ -282,3 +323,18 @@ extension EditProfileViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         return pickerLabel
     }
 }
+
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        editPhotoProfileImageView.image = image
+        UserDefaults.standard.set(image.jpegData(compressionQuality: 1.0), forKey: Key.userProfileImage)
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+

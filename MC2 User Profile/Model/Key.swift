@@ -9,6 +9,7 @@
 import Foundation
 
 struct Key {
+    static let userProfileImage = "userProfileImage"
     static let userFullName = "userFullName"
     static let userBowlerStatus = "userBowlerStatus"
     static let userGender = "userGender"

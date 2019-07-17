@@ -35,8 +35,17 @@ class ViewController: UIViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        setupLabelView(userClass: loadUserDefaults())
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        self.view.layoutIfNeeded()
+        editProfileLabel.startBlink()
+        view.layoutIfNeeded()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        editProfileLabel.stopBlink()
     }
     
     private func setupView() {
@@ -70,12 +79,13 @@ class ViewController: UIViewController {
         editProfileLabel.isUserInteractionEnabled = true
         editProfileLabel.textColor = .lightGray
         
+        editProfileLabel.startBlink()
+        
         editProfileLabel.addGestureRecognizer(editProfileTGR)
     }
     
     func setupLabelView(userClass: User) {
-        userPhotoProfileImageView.image = #imageLiteral(resourceName: "userPhotoProfile_1")
-        
+        userPhotoProfileImageView.image = userClass.userProfileImage
         userNameLabel.text = userClass.userFullName
         userBowlerStatusLabel.text = userClass.userBowlerStatus
         userGenderLabel.text = userClass.userGender
@@ -88,4 +98,3 @@ class ViewController: UIViewController {
         performSegue(withIdentifier: "goToEditProfile", sender: self)
     }
 }
-
