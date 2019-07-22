@@ -37,7 +37,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="133"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="ballImage" translatesAutoresizingMaskIntoConstraints="NO" id="rck-j5-tKr">
-                                                <rect key="frame" x="8" y="24" width="64" height="64"/>
+                                                <rect key="frame" x="8" y="24" width="64.000000000000057" height="64.000000000000057"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="Gsv-h2-Rvt"/>
                                                     <constraint firstAttribute="height" constant="64" id="ROs-KS-mff"/>
@@ -56,7 +56,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 LB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j87-U7-hIP">
-                                                <rect key="frame" x="18" y="96" width="46" height="19.5"/>
+                                                <rect key="frame" x="17" y="96" width="46" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -64,12 +64,12 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="j87-U7-hIP" secondAttribute="trailing" constant="212" id="403-67-uAB"/>
+                                            <constraint firstAttribute="trailing" secondItem="j87-U7-hIP" secondAttribute="trailing" constant="213" id="0EV-ky-ekA"/>
                                             <constraint firstItem="rck-j5-tKr" firstAttribute="top" secondItem="FsS-sp-qfo" secondAttribute="top" constant="24" id="A8A-R2-YLC"/>
-                                            <constraint firstItem="j87-U7-hIP" firstAttribute="leading" secondItem="FsS-sp-qfo" secondAttribute="leading" constant="18" id="RGN-Kh-7Od"/>
                                             <constraint firstItem="Ay9-sI-cdR" firstAttribute="top" secondItem="Eto-RJ-tBT" secondAttribute="bottom" constant="8" id="Tob-pt-mT0"/>
-                                            <constraint firstItem="j87-U7-hIP" firstAttribute="top" secondItem="rck-j5-tKr" secondAttribute="bottom" constant="8" id="f5H-k0-l2h"/>
+                                            <constraint firstItem="j87-U7-hIP" firstAttribute="top" secondItem="rck-j5-tKr" secondAttribute="bottom" constant="8" id="bow-5D-Bpu"/>
                                             <constraint firstItem="Ay9-sI-cdR" firstAttribute="leading" secondItem="rck-j5-tKr" secondAttribute="trailing" constant="16" id="kbg-pU-NPu"/>
+                                            <constraint firstItem="j87-U7-hIP" firstAttribute="leading" secondItem="FsS-sp-qfo" secondAttribute="leading" constant="17" id="n5n-k6-iKw"/>
                                             <constraint firstAttribute="trailing" secondItem="Ay9-sI-cdR" secondAttribute="trailing" constant="8" id="oMv-z3-5MD"/>
                                             <constraint firstItem="Eto-RJ-tBT" firstAttribute="leading" secondItem="rck-j5-tKr" secondAttribute="trailing" constant="12" id="plD-PX-vhE"/>
                                             <constraint firstItem="Eto-RJ-tBT" firstAttribute="top" secondItem="FsS-sp-qfo" secondAttribute="top" constant="32" id="qtG-QH-3W0"/>
